@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="RxUIForms.Views.HomePage" Title="{Binding Title}">
+    <ContentPage.Content>
+        <StackLayout Padding="10,20">
+            <ListView SelectedItem="{Binding SelectedItem, Mode=TwoWay}" ItemsSource="{Binding CopyItems}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell Text="{Binding Title}" />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Button Text="Show Error Dialog" Command="{Binding ShowAlertCommand}" />
+            <Button Text="Show Action Sheet" Command="{Binding ShowActionSheetCommand}" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
