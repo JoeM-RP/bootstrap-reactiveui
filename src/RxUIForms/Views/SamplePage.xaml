@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="RxUIForms.Views.SamplePage" Title="{Binding Title}" NavigationPage.BackButtonTitle=" ">
+    <ContentPage.Content>
+        <StackLayout Padding="10,20" Spacing="20">
+            <Label Text="{Binding Subject}" FontSize="Large"/>
+            <BoxView Style="{StaticResource DividerBoxView}"/>
+            <Label Text="{Binding Copy}" FontAttributes="Italic" VerticalOptions="StartAndExpand"/>
+            <Label Text="The contents of this page are determined by a navigation parameter. Check out SamplePageViewModel.cs to see how it works." FontSize="Small"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

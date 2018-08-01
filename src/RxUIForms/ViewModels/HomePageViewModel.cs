@@ -5,6 +5,7 @@ namespace RxUIForms.ViewModels
     {
         public HomePageViewModel()
         {
+            this.Title = "Home";
         }
     }
 }

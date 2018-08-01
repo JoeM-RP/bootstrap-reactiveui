@@ -13,4 +13,7 @@
     <Folder Include="Views\" />
     <Folder Include="Models\" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Views\SamplePage.cs" />
+  </ItemGroup>
 </Project>

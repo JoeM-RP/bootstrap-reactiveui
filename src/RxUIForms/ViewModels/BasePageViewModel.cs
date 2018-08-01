@@ -15,7 +15,7 @@ namespace RxUIForms.ViewModels
         public bool IsBusy => _busy.Value;
 
         private string _pageTitle;
-        public string PageTitle
+        public string Title
         {
             get { return _pageTitle; }
             set { this.RaiseAndSetIfChanged(ref _pageTitle, value); }

@@ -159,4 +159,12 @@
       <Name>RxUIForms</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\home.png" />
+    <BundleResource Include="Resources\home%402x.png" />
+    <BundleResource Include="Resources\settings.png" />
+    <BundleResource Include="Resources\settings%402x.png" />
+    <BundleResource Include="Resources\slideout.png" />
+    <BundleResource Include="Resources\slideout%402x.png" />
+  </ItemGroup>
 </Project>

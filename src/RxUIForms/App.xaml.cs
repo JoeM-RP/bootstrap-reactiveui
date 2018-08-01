@@ -16,8 +16,7 @@ namespace RxUIForms
             var factory = new XamvvmFormsRxUIFactory(this);
             XamvvmCore.SetCurrentFactory(factory);
 
-            factory.RegisterNavigationPage<AppNavigationViewModel>(() => this.GetPageFromCache<HomePageViewModel>());
-            MainPage = this.GetPageFromCache<AppNavigationViewModel>() as Page;
+            MainPage = this.GetPageFromCache<AppShellViewModel>() as Page;
         }
 
         protected override void OnStart()
