@@ -84,8 +84,14 @@ namespace RxUIForms.ViewModels
 
             _copyItems.Add(new CopyItem()
             {
-                Title = "About Prism.Forms",
-                Body = "Prism is a framework for building loosely coupled, maintainable, and testable XAML applications in WPF, Windows 10 UWP, and Xamarin Forms. Separate releases are available for each platform and those will be developed on independent timelines. Prism provides an implementation of a collection of design patterns that are helpful in writing well-structured and maintainable XAML applications, including MVVM, dependency injection, commands, EventAggregator, and others. "
+                Title = "About ReactiveUI",
+                Body = "ReactiveUI is a composable, cross-platform model-view-viewmodel framework for all .NET platforms that is inspired by functional reactive programming which is a paradigm that allows you to express the idea around a feature in one readable place, abstract mutable state away from your user interfaces and improve the testability of your application."
+            });
+
+            _copyItems.Add(new CopyItem()
+            {
+                Title = "About Xamvvm.Forms.RxUI",
+                Body = "A simple, fast and lightweight MVVM Framework for Xamarin.Forms with fluent API that makes using ReactiveUI in Xamarin.Forms even easier!"
             });
 
             _copyItems.Add(new CopyItem()
