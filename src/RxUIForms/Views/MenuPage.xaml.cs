@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using ReactiveUI;
 using RxUIForms.ViewModels;
 using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using Xamvvm;
 
 namespace RxUIForms.Views
@@ -12,6 +13,8 @@ namespace RxUIForms.Views
         public MenuPage()
         {
             InitializeComponent();
+
+            On<Xamarin.Forms.PlatformConfiguration.iOS>().SetUseSafeArea(true);
         }
 
         public MenuPageViewModel ViewModel { get; set; }

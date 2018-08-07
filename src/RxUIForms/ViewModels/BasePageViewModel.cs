@@ -9,8 +9,14 @@ namespace RxUIForms.ViewModels
 {
     public abstract class BasePageViewModel : BasePageModelRxUI, IPageVisibilityChange, INavigationPushed, INavigationPopped
     {
+        /*
+         * Define Fields
+         */
         protected CompositeDisposable SubscriptionDisposables = new CompositeDisposable();
 
+        /*
+         * Define Properties
+         */
         protected ObservableAsPropertyHelper<bool> _busy;
         public bool IsBusy => _busy.Value;
 
@@ -21,15 +27,24 @@ namespace RxUIForms.ViewModels
             set { this.RaiseAndSetIfChanged(ref _pageTitle, value); }
         }
 
+        /*
+         * Define Commands
+         */
+
         public BasePageViewModel()
         {
-            //Observable.Merge(this.ThrownExceptions)
-            //          .Throttle(TimeSpan.FromMilliseconds(250), RxApp.MainThreadScheduler)
-            //          .Subscribe(async ex =>
-            //{
+            Observable.Merge(this.ThrownExceptions)
+                      .Throttle(TimeSpan.FromMilliseconds(250), RxApp.MainThreadScheduler)
+                      .Subscribe(async ex => 
+            { 
                 
-            //}).DisposeWith(SubscriptionDisposables);
+            })
+                      .DisposeWith(SubscriptionDisposables);
         }
+
+        /*
+         * Define Methods
+         */
 
         /// <summary>
         /// Called when the pagve is popped from the navigation stack
