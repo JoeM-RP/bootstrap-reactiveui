@@ -17,7 +17,7 @@
                 <Label Text="Setting 3:" AbsoluteLayout.LayoutBounds="0,20,.3,40" AbsoluteLayout.LayoutFlags="WidthProportional" />
                 <Switch IsToggled="{Binding SettingThree}" AbsoluteLayout.LayoutBounds="1,10,.75,40" AbsoluteLayout.LayoutFlags="XProportional,WidthProportional" VerticalOptions="Center" />
             </AbsoluteLayout>
-            <ActivityIndicator IsRunning="{Binding IsLoading}" HorizontalOptions="CenterAndExpand" />
+            <ActivityIndicator IsRunning="{Binding IsBusy}" HorizontalOptions="CenterAndExpand" />
             <Button Text="Save" Command="{Binding SaveCommand}" VerticalOptions="EndAndExpand" />
         </StackLayout>
     </ContentPage.Content>

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reactive.Disposables;
 using ReactiveUI;
+using RxUIForms.Helpers;
 using RxUIForms.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
@@ -19,5 +21,14 @@ namespace RxUIForms.Views
 
         public SamplePageViewModel ViewModel { get; set; }
         object IViewFor.ViewModel { get; set; }
+
+        CompositeDisposable disposables = new CompositeDisposable();
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            ErrorHandler.RegisterErrorHandlerWithRetry(this, disposables);
+        }
     }
 }

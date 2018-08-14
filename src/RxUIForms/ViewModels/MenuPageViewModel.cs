@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
+using System.Reactive.Linq;
+using System.Threading.Tasks;
 using ReactiveUI;
 using RxUIForms.Models;
 using Xamvvm;
@@ -44,12 +47,32 @@ namespace RxUIForms.ViewModels
 
         public MenuPageViewModel()
         {
+            SelectItemCommand = ReactiveCommand.CreateFromTask<NavigationMenuItem, bool>(async (arg) => await SetDetailPageFromMenu(arg));
+
             Initialize();
         }
 
         /*
          * Define Methods
          */
+        private async Task<bool> SetDetailPageFromMenu(NavigationMenuItem arg)
+        {
+            
+            var masterDetailPage = this.GetPageFromCache<AppShellViewModel>();
+
+            switch(arg.Key)
+            {
+                case("Settings"):
+                    masterDetailPage.GetPageModel().SetDetail(this.GetPageFromCache<SettingsPageViewModel>());
+                    break;
+                default:
+                    masterDetailPage.GetPageModel().SetDetail(this.GetPageFromCache<HomePageViewModel>());
+                    break;
+            }
+
+            return true;
+        }
+
         private void Initialize()
         {
             MenuItems.Add(new NavigationMenuItem()
@@ -66,11 +89,10 @@ namespace RxUIForms.ViewModels
                 Image = "settings.png"
             });
 
-            this.ObservableForProperty(x => x.SelectedItem)
-                .Subscribe(item => 
-            { 
-                
-            });
+            this.ObservableForProperty(x => x.SelectedItem, skipInitial: true).Select(x => x.Value)
+                .Where(_ => SelectedItem != null)
+                .Do(_ => Debug.WriteLine("DEBUG: SelectItem"))
+                .InvokeCommand(SelectItemCommand);
         }
     }
 }
