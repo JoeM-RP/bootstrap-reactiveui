@@ -21,7 +21,7 @@ namespace RxUIForms.Helpers
                 await page.DisplayAlert(alert.Title, alert.Body, "OK");
 
                 // We need to set output before returning
-                interaction.SetOutput("true");
+                interaction.SetOutput(true);
             }).DisposeWith(disposable);
         }
     }

@@ -63,18 +63,15 @@ namespace RxUIForms.ViewModels
          */
         private async Task ShowAlert()
         {
-            var response = await Interactions.Errors.Handle(new NotImplementedException("This is a fake error to demonstrate the alert"));
-
-            if (response == ErrorRecoveryOption.Retry)
+            // Natrually, this is silly, but it demonstrates how to use Merged Observables to 
+            // handle errors elegantly. 
+            try
             {
-                // TODO: If response is true, the user wants to "retry" the action. 
-                // Do something here to attempt the action again
+                throw new NotImplementedException("This is a fake error to demonstrate the alert");
             }
-            else
+            catch(Exception ex)
             {
-                // TODO: If response is false, the user has canceled the attempted action
-                // So perform an action here that makes sense; we may want to naviagte to 
-                // a previous page or just sit idle
+                await Observable.Throw<Unit>(ex);
             }
         }
 
@@ -144,11 +141,24 @@ namespace RxUIForms.ViewModels
             // Error Handling
             Observable.Merge(this.ThrownExceptions, SelectItemCommand.ThrownExceptions, ShowAlertCommand.ThrownExceptions, ShowActionSheetCommand.ThrownExceptions)
                       .Throttle(TimeSpan.FromMilliseconds(250), RxApp.MainThreadScheduler)
+                      .Do((obj) => Debug.WriteLine($"[{obj.Source}] Error = {obj}"))
                       .Subscribe(async ex =>
             {
-                Debug.WriteLine($"[{ex.Source}] Error = {ex}");
+                //Debug.WriteLine($"[{ex.Source}] Error = {ex}");
 
-                await Interactions.Errors.Handle(ex);
+                var response = await Interactions.Errors.Handle(ex);
+
+                if (response == ErrorRecoveryOption.Retry)
+                {
+                    // TODO: If response is true, the user wants to "retry" the action. 
+                    // Do something here to attempt the action again
+                }
+                else
+                {
+                    // TODO: If response is false, the user has canceled the attempted action
+                    // So perform an action here that makes sense; we may want to naviagte to 
+                    // a previous page or just sit idle
+                }
 
             }).DisposeWith(SubscriptionDisposables);
         }

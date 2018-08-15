@@ -29,7 +29,7 @@ namespace RxUIForms.Views
             base.OnAppearing();
 
             ErrorHandler.RegisterErrorHandlerWithRetry(this, disposables);
-            ActionHandler.RegisterActionHandler(this, disposables);
+            ActionHandler.RegisterActionHandlerWithDestroy(this, "Destroy", disposables);
             AlertHandler.RegisterAlertHandler(this, disposables);
         }
     }
